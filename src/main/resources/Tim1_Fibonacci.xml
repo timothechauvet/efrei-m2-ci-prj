@@ -10,6 +10,11 @@
            http://www.springframework.org/schema/integration/file
            http://www.springframework.org/schema/integration/file/spring-integration-file-5.1.xsd">
 
+    <!--inbound-channel-adapter -> CHANNELEntree
+    -> file-to-string -> CHANNELFiltre
+    -> filter -> CHANNELTraitement
+    -> service-activator -> CHANNELOutput
+    -> file output -->
     <int:channel id="channelEntree"/>
 
     <int-file:inbound-channel-adapter 
@@ -20,23 +25,42 @@
     </int-file:inbound-channel-adapter>
 
     <int-file:file-to-string-transformer input-channel="channelEntree"
-                                    output-channel="channelTraitement"
+                                    output-channel="channelFiltre"
                                     delete-files="false"
                                     charset="UTF-8"/>
 
-    <int:channel id="channelTraitement"/>
-
     <!--Filtre-->
-    <int:filter input-channel="channelTraitement"
-                output-channel="channelSortie"
+    <int:channel id="channelFiltre"/>
+
+    <int:filter id="filtre"
+                input-channel="channelFiltre"
+                output-channel="channelTraitement"
                 ref="fibonacciSelector"
                 throw-exception-on-rejection="true"/>
 
     <bean id="fibonacciSelector" class="test.FibonacciSelector"/>
 
+
+    <!--Traitement avec service-activator-->
+    <int:channel id="channelTraitement"/>
+
+    <int:service-activator id="exampleServiceActivator"
+                           input-channel="channelTraitement"
+                           output-channel="channelSortie"
+                           method="add">
+        <bean class="test.FibonacciNumber"/>
+    </int:service-activator>
+
     <int:channel id="channelSortie"/>
 
+    <!--Output en fichier-->
+    <int-file:outbound-channel-adapter channel="channelSortie"
+                                       id="fibonacciOut"
+                                       directory="dataIn"/>
 
-    <int:logging-channel-adapter id="channelSortie" level="INFO"/>
+    <int:recipient-list-router id="routerLoop"
+                               input-channel="channelSortie">
+        <int:recipient channel="channelFiltre"/>
+    </int:recipient-list-router>
 </beans>
     
