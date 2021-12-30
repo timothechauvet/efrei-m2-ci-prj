@@ -1,16 +1,11 @@
 package test;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.integration.support.MessageBuilder;
-import org.springframework.messaging.MessageChannel;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import test.cafe.Cafe;
 import test.cafe.DrinkType;
 import test.cafe.Order;
-import test.splitter.SplitterOrderCreator;
 
 @SpringBootApplication
 public class Main {
@@ -20,20 +15,23 @@ public class Main {
 		//ApplicationContext ctx = new ClassPathXmlApplicationContext("Tim1_Fibonacci.xml");
 
 		// Cafe program
+		//ApplicationContext context = new ClassPathXmlApplicationContext("cafe.xml");
 
-		/*
+/*
 		Cafe cafe = new Cafe() ;
 		for (int i = 1; i <= 10; i++) {
 			Order order = new Order(i);
 			order.addItem(DrinkType.LATTE, 2, false);
 			order.addItem(DrinkType.MOCHA, 3, true);
 			cafe.placeOrder(order);
-			System.out.println("order placed");
+			//System.out.println("order placed");
 		}
-		*/
+*/
+		cafeApplication();
 
 		//Splitter
-		SpringApplication.run(Main.class, args);
+		//SpringApplication.run(Main.class, args);
+
 		// Image manipulation program
 	}
 
@@ -71,7 +69,7 @@ public class Main {
 
 
 	}
-
+/*
 	@Bean
 	public CommandLineRunner commandLineRunner(ApplicationContext context) {
 
@@ -85,7 +83,18 @@ public class Main {
 			}
 		};
 	}
+*/
 
+	public static void cafeApplication() {
+		AbstractApplicationContext context = new ClassPathXmlApplicationContext("cafe.xml");
+		Cafe cafe = context.getBean("cafe", Cafe.class);
+		for (int i = 1; i <= 100; i++) {
+			Order order = new Order(i);
+			order.addItem(DrinkType.LATTE, 2, false);
+			order.addItem(DrinkType.MOCHA, 3, true);
+			cafe.placeOrder(order);
+		}
+	}
 
 }
  

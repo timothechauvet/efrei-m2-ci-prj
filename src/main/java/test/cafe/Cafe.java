@@ -2,9 +2,9 @@ package test.cafe;
 
 import org.springframework.integration.annotation.Gateway;
 
-public class Cafe {
+public interface Cafe {
         @Gateway(requestChannel="orders")
-        public void placeOrder(Order order){
+       /* public void placeOrder(Order order){
                 Barista barista = new Barista();
                 order.orderItems.stream().forEach(
                         (item) -> {
@@ -17,5 +17,7 @@ public class Cafe {
                 );
                         //        return ((this.iced) ? "iced " : "hot ") + this.shots + " shot " + this.type;
                 //for all orderitem in list if cold prepare cold, if hot prepare hot
-        };
+        };*/
+        void placeOrder(Order order);
+
 }

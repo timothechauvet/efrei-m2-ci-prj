@@ -10,18 +10,14 @@ public class Barista {
     private static Log logger = LogFactory.getLog(Barista.class);
 
     private long hotDrinkDelay = 5000;
-
     private long coldDrinkDelay = 1000;
 
     private static final AtomicInteger hotDrinkCounter = new AtomicInteger();
-
     private static final AtomicInteger coldDrinkCounter = new AtomicInteger();
-
 
     public void setHotDrinkDelay(long hotDrinkDelay) {
         this.hotDrinkDelay = hotDrinkDelay;
     }
-
     public void setColdDrinkDelay(long coldDrinkDelay) {
         this.coldDrinkDelay = coldDrinkDelay;
     }
