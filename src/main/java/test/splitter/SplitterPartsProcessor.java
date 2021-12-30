@@ -1,4 +1,4 @@
-package test;
+package test.splitter;
 
 import java.text.MessageFormat;
 import java.util.Map;

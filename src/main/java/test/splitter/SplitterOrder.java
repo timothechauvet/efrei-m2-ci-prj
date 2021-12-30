@@ -1,4 +1,4 @@
-package test;
+package test.splitter;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
