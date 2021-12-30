@@ -17,7 +17,7 @@
     		<int:poller id="poller" fixed-delay="1000" />
     </int-file:inbound-channel-adapter>
     
-    <int:json-to-object-transformer input-channel="channelEntree" output-channel="mainChannel" type="test.MyAccount"></int:json-to-object-transformer>
+    <int:json-to-object-transformer input-channel="channelEntree" output-channel="mainChannel" type="test.old.MyAccount"></int:json-to-object-transformer>
 
     <int:channel id="mainChannel"></int:channel>
     
@@ -27,7 +27,7 @@
 	</int:recipient-list-router>
     
     <int:service-activator input-channel="serviceActivatorChannel" output-channel="aggregatorChannel" ref="serviceID" method="myService"/>
-    <bean id="serviceID" class="test.AccountService"/>
+    <bean id="serviceID" class="test.old.AccountService"/>
     
     <int:channel id="aggregatorChannel"></int:channel>
 

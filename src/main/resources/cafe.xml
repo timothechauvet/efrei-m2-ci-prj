@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/integration/stream
 		https://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
 
-    <int:gateway id="cafe" service-interface="test.Cafe"/>
+    <int:gateway id="cafe" service-interface="test.cafe.Cafe"/>
 
     <!-- each order has a collection of order items that is split apart to be processed -->
     <int:channel id="orders"/>

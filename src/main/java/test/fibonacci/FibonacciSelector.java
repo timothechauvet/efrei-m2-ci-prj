@@ -1,4 +1,4 @@
-package test;
+package test.fibonacci;
 
 import org.springframework.integration.core.MessageSelector;
 import org.springframework.messaging.Message;

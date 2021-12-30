@@ -26,7 +26,7 @@
 
     <int:service-activator id="exampleServiceActivator" input-channel="responseChannel"
                            output-channel = "outChannel" method="create">
-        <bean class="test.Account"/>
+        <bean class="test.old.Account"/>
     </int:service-activator>
 
     <int:channel id="outChannel"></int:channel>

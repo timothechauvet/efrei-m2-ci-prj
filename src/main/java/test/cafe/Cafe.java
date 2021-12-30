@@ -1,4 +1,4 @@
-package test;
+package test.cafe;
 
 import org.springframework.integration.annotation.Gateway;
 

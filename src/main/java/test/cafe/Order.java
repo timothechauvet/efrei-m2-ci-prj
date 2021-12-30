@@ -1,4 +1,4 @@
-package test;
+package test.cafe;
 
 //package org.springframework.integration.samples.cafe;
 

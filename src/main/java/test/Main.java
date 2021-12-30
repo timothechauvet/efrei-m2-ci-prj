@@ -1,21 +1,18 @@
 package test;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import test.Cafe;
-import test.DrinkType;
-import test.Order;
+import test.cafe.Cafe;
+import test.cafe.DrinkType;
+import test.cafe.Order;
 
 @SpringBootApplication
 public class Main {
 
 	public static void main(String[] args) {
+		// Fibonacci program
 		//ApplicationContext ctx = new ClassPathXmlApplicationContext("Tim1_Fibonacci.xml");
-//		MyGateway gtw = (MyGateway)ctx.getBean("test");
-//		gtw.method("testt");
+
+		// Cafe program
 		//AbstractApplicationContext context = new ClassPathXmlApplicationContext("/cafe.xml", Main.class);
 
 		Cafe cafe = new Cafe() ;
@@ -26,6 +23,8 @@ public class Main {
 			cafe.placeOrder(order);
 			System.out.println("order placed");
 		}
+
+		// Image manipulation program
 	}
 
 

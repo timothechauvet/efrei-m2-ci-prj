@@ -38,7 +38,7 @@
                 ref="fibonacciSelector"
                 throw-exception-on-rejection="true"/>
 
-    <bean id="fibonacciSelector" class="test.FibonacciSelector"/>
+    <bean id="fibonacciSelector" class="test.fibonacci.FibonacciSelector"/>
 
 
     <!--Traitement avec service-activator-->
@@ -48,7 +48,7 @@
                            input-channel="channelTraitement"
                            output-channel="channelSortie"
                            method="add">
-        <bean class="test.FibonacciNumber"/>
+        <bean class="test.fibonacci.FibonacciNumber"/>
     </int:service-activator>
 
     <int:channel id="channelSortie"/>

@@ -1,4 +1,4 @@
-package test;
+package test.cafe;
 
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
