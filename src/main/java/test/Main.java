@@ -1,8 +1,15 @@
 package test;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.integration.scheduling.PollerMetadata;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.scheduling.support.PeriodicTrigger;
 import test.cafe.Cafe;
 import test.cafe.DrinkType;
 import test.cafe.Order;
@@ -27,7 +34,7 @@ public class Main {
 			//System.out.println("order placed");
 		}
 */
-		cafeApplication();
+		hello();
 
 		//Splitter
 		//SpringApplication.run(Main.class, args);
@@ -96,5 +103,12 @@ public class Main {
 		}
 	}
 
+	public static void hello() {
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("hello.xml");
+		MessageChannel channel = context.getBean("inputChannel", MessageChannel.class);
+		Message<String> message = MessageBuilder.withPayload("World").build();
+		channel.send(message);
+	}
 }
  

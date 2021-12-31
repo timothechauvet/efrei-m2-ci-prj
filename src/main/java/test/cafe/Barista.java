@@ -2,6 +2,7 @@ package test.cafe;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.integration.annotation.ServiceActivator;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -22,6 +23,7 @@ public class Barista {
         this.coldDrinkDelay = coldDrinkDelay;
     }
 
+    @ServiceActivator(inputChannel = "hotDrinks", outputChannel = "preparedDrinks")
     public Drink prepareHotDrink(OrderItem orderItem) {
         try {
             Thread.sleep(this.hotDrinkDelay);
@@ -36,6 +38,7 @@ public class Barista {
         }
     }
 
+    @ServiceActivator(inputChannel = "coldDrinks", outputChannel = "preparedDrinks")
     public Drink prepareColdDrink(OrderItem orderItem) {
         try {
             Thread.sleep(this.coldDrinkDelay);
